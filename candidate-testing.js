@@ -21,19 +21,21 @@ function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
   for(let i=0; i<questions.length; i++) 
   {
-    console.log(`${i + 1}) ${questions[i]}`);
-    candidateAnswers[i] = input.question("Your Answer: ");
-    console.log(`Correct Answer: ${correctAnswers[i]} \n`);
+    // console.log(`${i + 1}) ${questions[i]}`);
+    candidateAnswers[i] = input.question(questions[i]);
   }
+  return candidateAnswers;
 }
 
 function gradeQuiz(candidateAnswers) {
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
   let grade=0;
   let correctAnswersCount=0;
-  for(let j=0; j<questions.length; j++) 
+  console.log(`\nCandidate Name: ${candidateName}`);
+  for(let i=0; i<questions.length; i++) 
   {
-    if (candidateAnswers[j].toLowerCase() === correctAnswers[j].toLowerCase()) 
+    console.log(`\n${i + 1}) ${questions[i]}\nYour Answer: ${candidateAnswers[i]}\nCorrect Answer: ${correctAnswers[i]}`);
+    if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) 
     {
       correctAnswersCount++;
     }
@@ -54,8 +56,8 @@ function gradeQuiz(candidateAnswers) {
 
 function runProgram() {
   // TODO 1.1c: Ask for candidate's name //
-  // console.log(`Welcome ${candidateName}\n`);
   askForName();
+  console.log(`Welcome to the Quiz ${candidateName}!\n`);
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
