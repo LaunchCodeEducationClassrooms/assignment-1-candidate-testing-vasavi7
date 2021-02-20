@@ -29,7 +29,6 @@ function askQuestion() {
 
 function gradeQuiz(candidateAnswers) {
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  let grade=0;
   let correctAnswersCount=0;
   console.log(`\nCandidate Name: ${candidateName}`);
   for(let i=0; i<questions.length; i++) 
@@ -40,16 +39,16 @@ function gradeQuiz(candidateAnswers) {
       correctAnswersCount++;
     }
   }
-  grade = (correctAnswersCount / questions.length) * 100;
+  let grade = (correctAnswersCount / questions.length) * 100;
   console.log(`>>> Overall Grade: ${grade}% (${correctAnswersCount} of ${questions.length} responses are correct) <<<`);
 
   if (grade>=80) 
   {
-    console.log(">>> Status: PASSED <<<");
+    console.log('>>> Status: PASSED <<<');
   }
   else 
   {
-    console.log(">>> Status: FAILED <<<");
+    console.log('>>> Status: FAILED <<<');
   }
   return grade;
 }
@@ -57,7 +56,7 @@ function gradeQuiz(candidateAnswers) {
 function runProgram() {
   // TODO 1.1c: Ask for candidate's name //
   askForName();
-  console.log(`Welcome to the Quiz ${candidateName}!\n`);
+  console.log(`\nWelcome to the Quiz ${candidateName}!\n`);
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
