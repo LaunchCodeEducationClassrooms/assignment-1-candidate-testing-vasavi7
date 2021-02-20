@@ -15,32 +15,44 @@ let candidateAnswers = [];
 
 function askForName() {
     // TODO 1.1b: Ask for candidate's name //
-    candidateName = input.question("Please enter your name: ");
+    candidateName = input.question("Candidate Name: ");
  }
  
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
     for(let i=0; i<questions.length; i++){
-      candidateAnswers[i] = input.question(questions[i]);
+      console.log(`${i+1}) ${questions[i]}`);
+    candidateAnswers[i] = input.question("Your Answer: ");
+    console.log(`Correct Answer: ${correctAnswers[i]} \n`);
 
   }
 }
 
 function gradeQuiz(candidateAnswers) {
-console.log("");
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  console.log(`Candidate Name: ${candidateName}\n`);
+  
 let correctAnswersCount = 0;
-for(let i=0; i<correctAnswers.length; i++){
-  console.log(`${questions[i]}
-  Your Answer: ${candidateAnswers[i]}
-  Correct Answer: ${correctAnswers[i]}\n`);
-  if(candidateAnswers[i].toString().toLowerCase() === correctAnswers[i].toString().toLowerCase()){
-    correctAnswersCount++;
+let grade = 0;
+  for (let j=0;j<questions.length;j++)
+  {								   
+    if (candidateAnswers[j].toLowerCase() === correctAnswers[j].toLowerCase())
+    {
+      correctAnswersCount++;
+    }
   }
-}
-  let grade = (correctAnswersCount / questions.length) * 100;
-  return grade;
+ 
+  grade = (correctAnswersCount / questions.length) * 100;  
+  console.log(`>>> Overall Grade: ${grade}% (${correctAnswersCount} of ${questions.length} responses are correct) <<<`);
+
+  if (grade>=80)
+  {
+    console.log (">>> Status: PASSED <<<");
+  }
+  else
+  {
+    console.log (">>> Status: FAILED <<<");
+  }
+    return grade;
 }
 
 function runProgram() {
@@ -49,12 +61,7 @@ function runProgram() {
   console.log(`Welcome ${candidateName}\n`);
     askQuestion();
   const result = gradeQuiz(this.candidateAnswers);
-  console.log(`>>> Overall Grade: ${result}% ( ${result/20} of 5 responses correct) <<<`);
-  if (result < 80) {
-    console.log(`<<< Status: Failed <<<`);
-  } else {
-    console.log(`<<< Status: Pass <<<`);
-  }
+
 }
 
 // Don't write any code below this line //
